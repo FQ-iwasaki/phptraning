@@ -1,7 +1,7 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      ユーザ編集完了
+      ユーザ編集
     </div>
     <div class="panel-body">
       <div class="row">

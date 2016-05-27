@@ -5,10 +5,10 @@
     public function __construct()
     {
         parent::__construct();
-        session_start();
-        if($_SESSION['login'] != TRUE){
-          redirect('session/login');
-        }
+        if($this->session->userdata("is_logged_in")){//ログインしている場合の処理
+	      }else{
+		      redirect ("sessions/restricted");
+	      }
         $this->load->model('Group_model');
         $this->load->library('form_validation');
     }
@@ -25,7 +25,6 @@
 
       $config['base_url'] = base_url('group/index');
       $config['total_rows'] = $this->Group_model->get_count();
-      $config['per_page'] = self::NUM_PER_PAGE;
       $config['full_tag_open'] = '<ul class="pagination">';
       $config['full_tag_close'] = '</ul>';
       $config['first_link'] = FALSE;

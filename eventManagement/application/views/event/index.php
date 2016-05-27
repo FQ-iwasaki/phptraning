@@ -1,13 +1,4 @@
-<?php foreach($registered_by as $r_user): ?>
-  <?php $register = $r_user->registered_by;  ?>
-<?php endforeach; ?>
-
-<?php $check = []; ?>
-<?php  foreach($participate as $value):?>
-  <?php $check[] = $value->events_id; ?>
-<?php endforeach;?>
-
-
+<?php var_dump($_SESSION); ?>;
 <div class="container">
   <h1 id="show-event">イベント一覧</h1>
   <div id="pages">
@@ -24,12 +15,14 @@
       </tr>
     </thead>
     <tbody>
-
-
+      <?php $check = []; ?>
+      <?php  foreach($participate as $value):?>
+        <?php $check[] = $value->events_id; ?>
+      <?php endforeach;?>
 
       <?php foreach($events as $event): ?>
         <tr>
-          <?php if(in_array($event->id,$check,true) || $event->registered_by === $register): ?>
+          <?php if(in_array($event->id,$check,true)): ?>
             <th><?php echo $event->title; ?><span class="label label-info spanlabel">参加</span></th>
           <?php else: ?>
             <th><?php echo $event->title; ?></th>

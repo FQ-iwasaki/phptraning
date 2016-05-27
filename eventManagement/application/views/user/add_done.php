@@ -1,7 +1,7 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      ユーザ登録完了
+      event Manager
     </div>
     <div class="panel-body">
       <div class="row">

@@ -15,8 +15,7 @@
       $offset = ($page - 1) * $num_per_page;
 
       $sql =
-        "SELECT e.id , title,place,start,g.name,registered_by FROM `events` as e
-
+        "SELECT e.id , title,place,start,g.name FROM `events` as e
           inner join `groups` as g on e.group_id = g.id where e.status = 1 ORDER BY start, end LIMIT ?,?";
       $query = $this->db->query($sql,array($offset,$num_per_page));
       return $query->result("Event_model");
@@ -26,22 +25,19 @@
       $offset = ($page - 1) * $num_per_page;
       $today = date('Y-m-d');
       $sql =
-        "SELECT e.id,title,start,place,g.name,registered_by FROM `events` as e inner join `groups` as g  on e.group_id = g.id where start like '%".$today."%' LIMIT ?,?";
+        "SELECT * FROM `events` inner join `groups` on events.group_id = groups.id where start like '%".$today."%' LIMIT ?,?";
       $query = $this->db->query($sql,array($offset,$num_per_page));
       return $query->result("Event_model");
-
     }
 
     public function get_count(){
-
-      $this->db->where('status',1);
+      $this->db->where('status','1');
       $this->db->from('events');
       return $this->db->count_all_results();
    }
 
    public function today_get_count(){
-     $today = date('Y-m-d');
-     $this->db->like('start',$today);
+     $this->db->where('start','NOW()');
      $this->db->from('events');
      return $this->db->count_all_results();
    }
@@ -64,7 +60,6 @@
     $query = $this->db->query($sql,array($id));
     return $query->result('Event_model');
   }
-
   public function get_groups()
   {
     $query = $this->db->query('SELECT id , name FROM `groups` WHERE status = 1');
@@ -103,13 +98,13 @@
       //  return $query = $this->db->simple_query($sql,array($id,$user_name));
   }
 
-  public function user_attend($user_id,$id){
+  public function user_attend($id){
     $sql = "
       select events_id from attends as a
         inner join users as u on a.users_id = u.id
         inner join events as e on a.events_id = e.id
-        where u.id = ? and a.events_id = ?";
-  	$query = $this->db->query($sql,array($user_id,$id));
+        where u.id = 3 and a.events_id = ?";
+  	$query = $this->db->query($sql,array($id));
     return $query->result('Event_model');
   }
 
@@ -118,14 +113,7 @@
       "SELECT events_id FROM attends AS a INNER JOIN users AS u on a.users_id = u.id where u.id = ?";
     $query = $this->db->query($sql,array($id));
     return $query->result('Event_model');
-  }
 
-  public function get_registered_by($id){
-    $sql = "
-      select registered_by from users as u inner join events as e on e.registered_by = u.id
-      where u.id = ? group by registered_by";
-    $query = $this->db->query($sql,array($id));
-    return $query->result('Event_model');
   }
 }
 ?>
