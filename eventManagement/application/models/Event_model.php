@@ -22,36 +22,36 @@
       return $query->result("Event_model");
     }
 
-    public function find_group_place($group,$place,$page,$num_per_page){
-      $offset = ($page - 1) * $num_per_page;
+    public function find_group_place($group,$place){
+
 
       $sql =
         "SELECT e.id , title,place,start,end,g.name,registered_by FROM `events` as e
 
-          inner join `groups` as g on e.group_id = g.id where e.group_id=? AND e.place=? AND e.status = 1 ORDER BY end DESC, end LIMIT ?,?";
-      $query = $this->db->query($sql,array($group,$place,$offset,$num_per_page));
+          inner join `groups` as g on e.group_id = g.id where e.group_id=? AND e.place=? AND e.status = 1 ORDER BY end DESC, end ";
+      $query = $this->db->query($sql,array($group,$place));
       return $query->result("Event_model");
     }
 
-    public function find_group($group,$page,$num_per_page){
-      $offset = ($page - 1) * $num_per_page;
+    public function find_group($group){
+
 
       $sql =
         "SELECT e.id , title,place,start,end,g.name,registered_by FROM `events` as e
 
-          inner join `groups` as g on e.group_id = g.id where e.group_id = ?  AND e.status = 1 ORDER BY end DESC, end LIMIT ?,?";
-      $query = $this->db->query($sql,array($group,$offset,$num_per_page));
+          inner join `groups` as g on e.group_id = g.id where e.group_id = ?  AND e.status = 1 ORDER BY end DESC, end";
+      $query = $this->db->query($sql,array($group));
       return $query->result("Event_model");
     }
 
-    public function find_place($place,$page,$num_per_page){
-      $offset = ($page - 1) * $num_per_page;
+    public function find_place($place){
+
 
       $sql =
         "SELECT e.id , title,place,start,end,g.name,registered_by FROM `events` as e
 
-          inner join `groups` as g on e.group_id = g.id where e.place=? AND e.status = 1 ORDER BY end DESC, end LIMIT ?,?";
-      $query = $this->db->query($sql,array($place,$offset,$num_per_page));
+          inner join `groups` as g on e.group_id = g.id where e.place=? AND e.status = 1 ORDER BY end DESC, end ";
+      $query = $this->db->query($sql,array($place));
       return $query->result("Event_model");
     }
 
@@ -77,30 +77,6 @@
       return $this->db->count_all_results();
    }
 
-   public function get_group_place_count($group,$place){
-
-     $this->db->where('status',1);
-     $this->db->where('group_id',$group);
-     $this->db->where('place',$place);
-     $this->db->from('events');
-     return $this->db->count_all_results();
-  }
-
-   public function get_group_count($group){
-
-     $this->db->where('status',1);
-     $this->db->where('group_id',$group);
-     $this->db->from('events');
-     return $this->db->count_all_results();
-  }
-
-  public function get_place_count($place){
-
-    $this->db->where('status',1);
-    $this->db->where('place',$place);
-    $this->db->from('events');
-    return $this->db->count_all_results();
- }
 
    public function today_get_count(){
      $today = date('Y-m-d');
