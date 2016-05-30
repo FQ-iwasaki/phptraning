@@ -1,50 +1,58 @@
+
 <div class="container">
-  <h1>イベント詳細</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      イベント詳細
+    </div>
+    <div class="panel-body">
+      <div class="row">
+       <div class="col-md-12">
+         <h1>イベント詳細</h1>
 
-  <table class="table">
+         <table class="table">
 
-  	<tbody>
-  		<?php foreach ($event as $value) :?>
+  	        <tbody>
+  		          <?php foreach ($event as $value) :?>
 
-  		<tr>
-  			<th class="col-xs-2">タイトル</th>
-  			<td><?php echo $value->title; ?><?php if($participate): ?><span class="label label-info spanlabel">参加</span><?php endif; ?></td>
-  		</tr>
-  		<tr>
-  			<th>開始時間</th>
-  			<td><?php echo $value->start;?></td>
-  		</tr>
-  		<tr>
-  			<th>終了時間</th>
-  			<td><?php echo $value->end;?></td>
-  		</tr>
-  		<tr>
-  			<th>場所</th>
-  			<td><?php echo $value->place;?></td>
-  		</tr>
-  		<tr>
-  			<th>対象グループ</th>
-  			<td><?php echo $value->g_name;?></td>
-  		</tr>
-      <tr>
-        <th>詳細</th>
-        <td><?php echo $value->detail;?></td>
-      </tr>
-      <tr>
-        <th>登録者</th>
-        <td><?php echo $value->u_name;?></td>
-      </tr>
-      <tr>
-        <th>参加者</th>
-        <td>
-  				<?php foreach ($attends as $san):?>
-  					<?php echo $san->name;?>
-  				<?php endforeach; ?>
-          <?php echo $value->u_name;?>
-  			</td>
-      </tr>
-  	</tbody>
-  </table>
+          		<tr>
+          			<th class="col-xs-2">タイトル</th>
+          			<td><?php echo $value->title; ?><?php if($participate): ?><span class="label label-info spanlabel">参加</span><?php endif; ?></td>
+          		</tr>
+          		<tr>
+          			<th>開始時間</th>
+          			<td><?php echo $value->start;?></td>
+          		</tr>
+          		<tr>
+          			<th>終了時間</th>
+          			<td><?php echo $value->end;?></td>
+          		</tr>
+          		<tr>
+          			<th>場所</th>
+          			<td><?php echo $value->place;?></td>
+          		</tr>
+          		<tr>
+          			<th>対象グループ</th>
+          			<td><?php echo $value->g_name;?></td>
+          		</tr>
+              <tr>
+                <th>詳細</th>
+                <td><?php echo $value->detail;?></td>
+              </tr>
+              <tr>
+                <th>登録者</th>
+                <td><?php echo $value->u_name;?></td>
+              </tr>
+              <tr>
+                <th>参加者</th>
+                <td>
+          				<?php foreach ($attends as $san):?>
+          					<?php echo $san->name;?>
+          				<?php endforeach; ?>
+                  <?php echo $value->u_name;?>
+          			</td>
+              </tr>
+  	         </tbody>
+           </table>
   <a id="c"><?php echo form_open(); ?>
     <?php if(!$registered_by ): ?>
   <?php if(!$participate): ?>
@@ -64,17 +72,21 @@
   </div>
 
   <!-- モーダルウィンドウの中身 -->
-  <div class="modal fade" id="myModal">
-  	<div class="modal-dialog">
-  		<div class="modal-content">
+            <div class="modal fade" id="myModal">
+  	         <div class="modal-dialog">
+  		        <div class="modal-content">
 
-  			<div class="modal-body">本当に削除してよろしいですか?</div>
-  			<div class="modal-footer">
-  				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-  				<a href="<?php echo base_url('event/delete/'. $value->id); ?>"><button type="button" class="btn btn-success">OK</button></a>
-  			 </div>
-  		</div>
-  	</div>
+  			      <div class="modal-body">本当に削除してよろしいですか?</div>
+  			       <div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        				<a href="<?php echo base_url('event/delete/'. $value->id); ?>"><button type="button" class="btn btn-success">OK</button></a>
+  			       </div>
+  		        </div>
+  	         </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
   </div>
-  <?php endforeach; ?>
 </div>
