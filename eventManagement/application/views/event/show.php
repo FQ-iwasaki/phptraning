@@ -108,7 +108,9 @@
 <?php echo form_open(); ?>
     <?php if(!$registered_by && !$date_check && !$participate ): ?>
      <?php echo form_submit('save','参加する','id="submit" class="btn btn-success"');?>
-  <?php else:?>
+  <?php elseif($date_check || $registered_by || $date_check && $participate):?>
+
+  <?php else: ?>
   	<?php echo form_submit('cancel','参加を取り消す','id="submit" class="btn btn-success"');?>
   <?php endif; ?>
 <?php echo form_close(); ?>
