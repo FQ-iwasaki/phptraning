@@ -101,13 +101,21 @@
     $config['base_url'] = base_url('post/information');
     $config['total_rows'] = $this->Post_model->get_count($other_user_id,$other_user_group_id);
     $config['per_page'] = self::NUM_PER_PAGE;
+    $config['full_tag_open'] = '<ul class="pagination">';
+    $config['full_tag_close'] = '</ul>';
+    $config['first_link'] = FALSE;
+    $config['last_link'] = FALSE;
     $config['use_page_numbers'] = TRUE;
-    $config['prev_link'] = '前のページ';
-    $config['next_link'] = '次のページ';
-    $config['prev_tag_close'] = ' | ';
-    $config['num_tag_close'] = ' | ';
-    $config['cur_tag_close'] = '</strong>  | ';
-    $config['anchor_class'] = 'page-link';
+    $config['prev_link'] = '<<';
+    $config['prev_tag_open'] = '<li>';
+    $config['prev_tag_close'] = '</li>';
+    $config['next_link'] = '>>';
+    $config['next_tag_open'] = '<li>';
+    $config['next_tag_close'] = '</li>';
+    $config['cur_tag_open'] = '<li class="active"><a href="">';
+    $config['cur_tag_close'] = '</a></li>';
+    $config['num_tag_open'] = '<li>';
+    $config['num_tag_close'] = '</li>';
     $this->pagination->initialize($config);
 
     $data["posts"] = $posts;
