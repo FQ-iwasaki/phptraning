@@ -46,14 +46,6 @@
 
 <div id = "k">
 <div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      イベント詳細
-    </div>
-    <div class="panel-body">
-      <div class="row">
-
-       <div class="col-md-12">
   <h1>イベント詳細</h1>
 
   <table class="table">
@@ -114,15 +106,10 @@
   </table>
 
 <?php echo form_open(); ?>
-
     <?php if(!$registered_by && !$date_check && !$participate ): ?>
      <?php echo form_submit('save','参加する','id="submit" class="btn btn-success"');?>
-  <?php elseif($participate && $date_check ):?>
-
-  <?php elseif($participate): ?>
-    	<?php echo form_submit('cancel','参加を取り消す','id="submit" class="btn btn-success"');?>
-  <?php else: ?>
-
+  <?php else:?>
+  	<?php echo form_submit('cancel','参加を取り消す','id="submit" class="btn btn-success"');?>
   <?php endif; ?>
 <?php echo form_close(); ?>
 
@@ -150,9 +137,7 @@
   </div>
 
 </div>
+
+
   <?php endforeach; ?>
-</div>
-</div>
-</div>
-</div>
 </div>
