@@ -133,7 +133,7 @@
       $this->form_validation
         ->set_message('select_check','送信相手か対象グループを選択してください。');
       return false;
-    }elseif($this->input->post('user') !== 0  && $this->input->post('group') !== 0){
+    }elseif($this->input->post('user') != 0  && $this->input->post('group') != 0){
       $this->form_validation
         ->set_message('select_check','どちらか１つを選択してください。');
       return false;
