@@ -48,40 +48,42 @@ class Event extends CI_Controller{
         if($g_id !== "0" && $p_name !== "全て" ){
 
 
-          $events = $this->Event_model->find_group_place($g_id,$p_name,$page, self::NUM_PER_PAGE);
+          $events = $this->Event_model->find_group_place($g_id,$p_name);
           $data["events"] = $events;
-          $count = $this->Event_model->get_group_place_count($g_id,$p_name);
+
 
 
         }elseif($g_id !== "0"){
 
 
-          $events = $this->Event_model->find_group($g_id,$page, self::NUM_PER_PAGE);
+          $events = $this->Event_model->find_group($g_id);
           $data["events"] = $events;
-          $count = $this->Event_model->get_group_count($g_id);
+
 
         }elseif($p_name !== "全て"){
 
-          $events = $this->Event_model->find_place($p_name,$page, self::NUM_PER_PAGE);
+          $events = $this->Event_model->find_place($p_name);
           $data["events"] = $events;
-          $count = $this->Event_model->get_place_count($p_name);
 
         }elseif($g_id === "0" && $p_name === "全て" ){
 
           $events = $this->Event_model->find_all($page, self::NUM_PER_PAGE);
           $data["events"] = $events;
           $count = $this->Event_model->get_count();
+          $url = base_url('event/index');
+          $this->config_set($url,$count);
         }
 
       }else{
         $events = $this->Event_model->find_all($page, self::NUM_PER_PAGE);
         $data["events"] = $events;
         $count = $this->Event_model->get_count();
+        $url = base_url('event/index');
+        $this->config_set($url,$count);
       }
 
 
-      $url = base_url('event/index');
-      $this->config_set($url,$count);
+
      $header['title'] = 'イベント一覧';
      $this->load->view('header', $header);
      $this->load->view('event/index',$data);
