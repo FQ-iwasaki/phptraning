@@ -101,7 +101,7 @@
       <div class="row">
 
        <div class="col-md-12">
-        <h1 id="show-event">イベント一覧</h1>
+        <h2 id="show-event">イベント一覧</h2>
         <div id="pages">
           <?php echo $this->pagination->create_links();?>
         </div>
@@ -155,7 +155,9 @@
           </tbody>
         </table>
 
+
         <a href="<?php echo base_url('event/add'); ?>"><button id="add" class="btn btn-primary">イベント登録</button></a>
+
       </div>
     </div>
   </div>
