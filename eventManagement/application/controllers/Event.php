@@ -252,7 +252,7 @@ class Event extends CI_Controller{
 
         $event = $this->validation();
      //ヴァリデーションが通ったとき
-        if($event ==TRUE){
+        if($event){
           $this->Event_model->update($event,$id);
 		  $this->load->view('header',$header);
           $this->load->view('event/edit_done');
@@ -362,7 +362,7 @@ class Event extends CI_Controller{
       $s = $this->input->post('start');
       $e = $this->input->post('end');
 
-      if($s > $e){
+      if($s >= $e){
         $this->form_validation
           ->set_message('date_check','終了日時は、開始日時よりも後にしてください。');
         return false;
